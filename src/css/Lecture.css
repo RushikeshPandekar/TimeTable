@@ -1,0 +1,12 @@
+.lecture{
+    display: flex;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgba(235, 235, 235, 0.452);
+    margin: 20px;
+}
+.time{
+    border-right: solid 1px black ;
+    padding: 8px;
+    margin: 17px;
+}

@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Sofia Sans Extra Condensed', sans-serif;
+    font-size: 1rem;
+}
+.abcd{
+    display: flex;
+    width:100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(161, 161, 253);
+}
+.boxes{
+    width:92%;
+    height: 94%;
+    box-shadow: -16px 16px 50px 2px rgb(209, 209, 209);
+    display: flex;
+}
+
+#imagesection1{
+    width:50%;
+    background:url("../images/clgstudents.jpg") no-repeat center center/cover;
+}
+#imagesection2{
+    width:50%;
+    background:url("../images/faculty.jpg") no-repeat center center/cover;
+}
+.information1{
+    width:50%;
+    background-color: rgba(12, 12, 51, 0.966);
+    color: rgb(255, 255, 255);
+}
+.radio{
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.line{
+    width:50%;
+    margin-bottom: 10px;
+    height: 0%;
+    border: 1px solid blanchedalmond;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.form1{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+.fullname{
+    display: flex;
+    justify-content: center;
+    padding: 7px;
+}
+.col{
+    margin: 7px;
+    margin-bottom: 0;
+}
+.input-field{
+    width: 90%;
+    margin: 7px;
+    padding: 7px;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom:1px solid rgb(255, 255, 255);
+    color: white;
+}
+.branch{
+    display: flex;
+    justify-content: center;
+    padding: 7px;
+}
+.year-division{
+    display: flex;
+    justify-content: center;
+    padding: 7px;
+}
+select{
+    margin: 5px;
+}
+.subbtn{
+    display: flex;
+    justify-content: center;
+}
+.validation{
+    display: flex;
+    margin: 10px;
+}
+.validation input{
+    margin-right: 10px;
+}
+#facultyform{
+    /* display: none; */
+}
+.facfullname{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.facfullname div{
+    width:93%;
+}
+@media (max-width:650px){
+    .imagesection{
+        display: none;
+    }
+    .boxes{
+        justify-content: center;
+    }
+    .information1{
+        width:100%;
+    }
+}
+@media (max-width:450px){
+
+}
