@@ -5,8 +5,6 @@ import wave from "../images/wave.png";
 import avatar from "../images/avatar.svg";
 import bg from "../images/bg.svg";
 import AuthContext from "../context/AuthContext";
-import { db } from "../firebase_config";
-import { doc, getDoc } from "firebase/firestore";
 
 export default function Login() {
   const authCtx = useContext(AuthContext);
@@ -15,11 +13,7 @@ export default function Login() {
   const handelSubmit = async (e) => {
     e.preventDefault();
     await authCtx.onLogin(credentials);
-
-    const docRef = doc(db, "users", authCtx.user.uid);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      console.log(docSnap.data());
+    if (Object.keys(authCtx.userCompleteDetails).length !== 0) {
       navigate("/home", { replace: true });
     } else {
       navigate("/informationform", { replace: true });

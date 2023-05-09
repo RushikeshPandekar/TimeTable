@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { register, login } from "../utils/firebase_auth";
+import { db } from "../firebase_config";
+import { doc, getDoc } from "firebase/firestore";
 
 const AuthContext = React.createContext({
   isLoggedIn: false,
@@ -7,11 +9,13 @@ const AuthContext = React.createContext({
   onSignin: async () => {},
   onLogout: () => {},
   user: {},
+  userCompleteDetails: {},
 });
 
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userObj, setUserObj] = useState({});
+  const [userCompleteDetails, setUserCompleteDetails] = useState({});
 
   const loginHandler = async (credentials) => {
     const user = await login(credentials.email, credentials.password);
@@ -37,6 +41,13 @@ export const AuthContextProvider = (props) => {
   };
 
   useEffect(() => {
+    const getUserDataFromDB = async (uid) => {
+      const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
+      console.log(docSnap.data());
+      setUserCompleteDetails(docSnap.data());
+    };
+
     let userObjStored = localStorage.getItem("userObj");
     if (userObjStored) {
       userObjStored = JSON.parse(userObjStored);
@@ -48,6 +59,7 @@ export const AuthContextProvider = (props) => {
         email: userObjStored.email,
         accessToken: userObjStored.accessToken,
       }));
+      getUserDataFromDB(userObjStored.uid);
     } else {
       setIsLoggedIn(false);
     }
@@ -61,6 +73,8 @@ export const AuthContextProvider = (props) => {
         onSignin: signinHandler,
         onLogout: logoutHandler,
         user: userObj,
+        userCompleteDetails: userCompleteDetails,
+        setUserCompleteDetails: setUserCompleteDetails,
       }}
     >
       {props.children}
